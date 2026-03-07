@@ -1,13 +1,17 @@
-name = "line-illustrator"
-main = "worker/index.js"
+name = "mikael-venne-studio-line"
+main = "index.js"
 compatibility_date = "2024-01-01"
 
 [vars]
-DEFAULT_PROMPT = "a lone figure walking through a vast empty city at dusk"
+DEFAULT_PROMPT = "Editorial illustration. Loose expressive ink linework. Color palette restricted to: light creamy  background, should be Pantone 663 C (Coated), Figure-forward whimsical composition with minimal negative space.  Flat muted earth tones throughout, no gradients. Collage texture overlay, Gwendal Le Bec style. New Yorker magazine aesthetic. No text, no numbers, no labels, no lettering, no hexcode, no UI chrome."
 STYLE_SUFFIX = "editorial illustration, loose expressive ink linework, flat muted color palette with earth tones, whimsical figurative composition, minimal background, collage texture overlay, Gwendal Le Bec style, New Yorker magazine aesthetic, no text, no letters, no numbers, no labels, no annotations, no diagrams"
-STYLE_REF_URL_1 = ""
-STYLE_REF_URL_2 = ""
-STYLE_REF_URL_3 = ""
+STYLE_REF_URL_1 = "https://res.cloudinary.com/djdmrz2fd/image/upload/v1772781622/ref1_c82yfr.jpg"
+STYLE_REF_URL_2 = "https://res.cloudinary.com/djdmrz2fd/image/upload/v1772781622/ref3_nmxh7b.webp"
+STYLE_REF_URL_3 = "https://res.cloudinary.com/djdmrz2fd/image/upload/v1772781622/ref2_cqgkzq.webp"
+
+[[kv_namespaces]]
+binding = "STUDIO_STATE"
+id = "875d5de03a1a45f28074907f22073e99"
 
 # Secrets — set via CF dashboard or `wrangler secret put`:
 # LINE_CHANNEL_SECRET
