@@ -125,12 +125,14 @@ async function uploadToCloudinary(imageUrl, env) {
   const timestamp = Math.floor(Date.now() / 1000);
   const folder = "artwork";
   const publicId = `illus-${timestamp}`;
-  const sigString = `folder=${folder}&public_id=${publicId}&timestamp=${timestamp}${env.CLOUDINARY_SECRET}`;
+  const tags = "artwork";
+  const sigString = `folder=${folder}&public_id=${publicId}&tags=${tags}&timestamp=${timestamp}${env.CLOUDINARY_SECRET}`;
 
   const sigHash = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(sigString));
   const signature = Array.from(new Uint8Array(sigHash)).map((b) => b.toString(16).padStart(2, "0")).join("");
 
   const form = new FormData();
+  form.append("tags", tags);
   form.append("file", dataUri);
   form.append("folder", folder);
   form.append("public_id", publicId);
