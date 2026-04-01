@@ -91,12 +91,15 @@ async function generateImage(prompt, env) {
 
   const payload = {
     prompt,
-    aspect_ratio: "16x9",
+    aspect_ratio: "4x3",
     magic_prompt_option: "OFF",
     rendering_speed: "QUALITY",
   };
 
-  if (styleRefs.length > 0) payload.style_reference_images = styleRefs;
+  if (styleRefs.length > 0) {
+    payload.style_reference_images = styleRefs;
+    payload.style_weight = 0.8;
+  }
 
   const resp = await fetch(IDEOGRAM_API, {
     method: "POST",
@@ -193,7 +196,8 @@ export default {
         ? (env.DEFAULT_PROMPT || "a lone figure walking through a vast empty city at dusk")
         : userText;
 
-      const styleSuffix = env.STYLE_SUFFIX || "";
+      // Style suffix: composition/subject guardrails only — NO style descriptors (style refs handle that)
+      const styleSuffix = env.STYLE_SUFFIX || "figurative composition, no text, no letters, no numbers, no labels, no diagrams";
       const fullPrompt = styleSuffix ? `${basePrompt}, ${styleSuffix}` : basePrompt;
 
       // Acknowledge immediately (LINE 5s reply window)
